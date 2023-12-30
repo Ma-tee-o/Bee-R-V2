@@ -10,7 +10,7 @@ public class BeeVision : MonoBehaviour
     public Camera BeeVisionCam;
     public InputDeviceCharacteristics inputDeviceCharacteristics;
     
-    public InputDevice _targetDevice;
+    public InputDevice targetDevice;
     
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class BeeVision : MonoBehaviour
         BeeVisionCam.enabled = false;
     }
 
-   
+
     void Update()
     {
         List<InputDevice> devices = new List<InputDevice>();
@@ -29,11 +29,13 @@ public class BeeVision : MonoBehaviour
         {
             Debug.Log(item.name + item.characteristics);
             Debug.Log(devices[0].name + devices[0].characteristics);
-            _targetDevice = devices[0];
+            targetDevice = devices[0];
         }
-        
+    }
 
-        if (_targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool triggerValue) && triggerValue)
+    private void FixedUpdate()
+    {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool triggerValue) && triggerValue)
         {
             Debug.Log("Y button is pressed.");
 
@@ -42,7 +44,6 @@ public class BeeVision : MonoBehaviour
 
         }
     }
-
 }
     
     

@@ -962,7 +962,7 @@
                     "name": "",
                     "id": "7796f0a2-1acc-4380-9ef1-47e23846a822",
                     "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
+                    "interactions": "Press(pressPoint=1)",
                     "processors": "",
                     "groups": "",
                     "action": "Toggle",
