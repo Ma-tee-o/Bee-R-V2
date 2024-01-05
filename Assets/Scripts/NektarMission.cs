@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.XR;
+using System.Collections.Generic;
 
 public class NektarMission : MonoBehaviour
 {
-    public MissionManager missionManager; 
-    public KeyCode pickupDropKey = KeyCode.B; 
+    public MissionManager missionManager;
+    public InputDeviceCharacteristics inputDeviceCharacteristics;
+    public InputDevice targetDevice;
+
     public GameObject dropZoneObject; 
     public PollinateFlowerMission pollinateFlowerMission; // Referenz auf die nächste Mission
 
@@ -21,7 +25,18 @@ public class NektarMission : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pickupDropKey))
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(inputDeviceCharacteristics, devices);
+
+        foreach (var item in devices)
+        {
+            targetDevice = devices[0];
+        }
+  
+}
+    private void FixedUpdate()
+    {
+    if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool triggerValue) && triggerValue)
         {
             if (!nectarPickedUp)
             {
@@ -33,7 +48,7 @@ public class NektarMission : MonoBehaviour
             }
         }
 
-        if (BeeIsNearNectar() && Input.GetKeyDown(pickupDropKey))
+        if (BeeIsNearNectar() && targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryButtonValue) && secondaryButtonValue)
         {
             if (!nectarPickedUp)
             {
