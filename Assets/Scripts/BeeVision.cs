@@ -21,6 +21,7 @@ public class BeeVision : MonoBehaviour
     void Start()
     {
         BeeVisionCam.enabled = false;
+        _lastActivationTime = Time.time - _activationCooldown; // Initialize _lastActivationTime to a value before the first frame
     }
 
     void Update()

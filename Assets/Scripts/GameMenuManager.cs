@@ -1,44 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.InputSystem;
 
 public class GameMenuManager : MonoBehaviour
 {
+    public float spawnDistance;
     public GameObject menu;
-    public InputDeviceCharacteristics inputDeviceCharacteristics;
-    public InputDevice targetDevice;
-    public Transform head;
-    public float spawnDistance = 2;
+    public InputActionProperty showMenuButton;
 
-    private float _lastActivationTime = 0.0f;
-    private float _activationCooldown = 0.6f;
-
-    void Start()
-    {
-        menu.SetActive(false);
-    }
+    private Vector3 relativePosition;
 
     void Update()
     {
-        List<InputDevice> devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(inputDeviceCharacteristics, devices);
+        // Find the active camera dynamically
+        Camera activeCamera = FindActiveCamera();
 
-        foreach (var item in devices)
+        if (activeCamera == null)
         {
-            targetDevice = item;
+            Debug.LogError("No active camera found.");
+            return;
         }
 
-        if (targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool triggerValue) && triggerValue && Time.time - _lastActivationTime >= _activationCooldown)
+        if (showMenuButton.action.WasPerformedThisFrame())
         {
-            _lastActivationTime = Time.time;
-            Debug.Log("Menu button pressed.");
             menu.SetActive(!menu.activeSelf);
 
-            menu.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
+            if (menu.activeSelf)
+            {
+                menu.transform.position = activeCamera.transform.position +
+                    new Vector3(activeCamera.transform.forward.x, 0, activeCamera.transform.forward.z).normalized * spawnDistance;
+
+                relativePosition = new Vector3(menu.transform.position.x - activeCamera.transform.position.x,
+                    0, menu.transform.position.z - activeCamera.transform.position.z);
+            }
         }
 
-        menu.transform.LookAt(new Vector3(head.position.x, menu.transform.position.y, head.position.z));
+        menu.transform.position = activeCamera.transform.position + relativePosition;
+
+        menu.transform.LookAt(new Vector3(activeCamera.transform.position.x, menu.transform.position.y, activeCamera.transform.position.z));
         menu.transform.forward *= -1;
+    }
+
+    // Function to find the active camera dynamically
+    Camera FindActiveCamera()
+    {
+        Camera[] cameras = Camera.allCameras;
+
+        foreach (Camera cam in cameras)
+        {
+            if (cam.isActiveAndEnabled)
+            {
+                return cam;
+            }
+        }
+
+        return null;
     }
 }
