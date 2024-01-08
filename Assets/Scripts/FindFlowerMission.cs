@@ -1,40 +1,46 @@
 using UnityEngine;
 
 public class FindFlowerMission : MonoBehaviour
-
 {
-    public MissionManager missionManager; 
-    public string flowerTag = "Blume"; 
-    public NektarMission nectarMission; // Referenz auf die nächste Mission
+    
+    public GameObject bieneObject;
+    public GameObject blumeObject;
 
-    private bool missionCompleted = false; 
+    public float triggerDistance = 1.0f;
+    private bool missionCompleted = false;
 
-    private void Start()
+    public GameObject nectarMissionObject; // Referenz auf das GameObject mit dem NektarMission-Skript
+
+    private void Update()
     {
-        enabled = true;
+        if (bieneObject == null || blumeObject == null)
+        {
+            Debug.LogError("Biene oder Blume GameObjects sind nicht zugewiesen!");
+            return;
+        }
+
+        float distance = Vector3.Distance(bieneObject.transform.position, blumeObject.transform.position);
+        if (distance < triggerDistance && !missionCompleted)
+        {
+            StartNectarMission();
+        }
+
+        else
+        { Debug.Log("Konnte keine Blume finden."); }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void StartNectarMission()
     {
-        if (!missionCompleted && other.CompareTag("Biene"))
+        Debug.Log("Biene hat die Blume getroffen!");
+        missionCompleted = true;
+
+        if (nectarMissionObject != null)
         {
-            if (other.CompareTag(flowerTag))
+            NektarMission nectarMission = nectarMissionObject.GetComponent<NektarMission>();
+            if (nectarMission != null)
             {
-                BlumeGefunden();
+                nectarMission.enabled = true; // Aktiviere die Nektarmission
             }
         }
     }
-
-    void BlumeGefunden()
-    {
-        missionCompleted = true;
-        missionManager.FindFlower();
-
-        if (nectarMission != null)
-        {
-            nectarMission.enabled = true; // Aktiviere die nächste Mission
-        }
-        
-    }
 }
-
