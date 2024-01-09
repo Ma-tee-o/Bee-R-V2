@@ -7896,12 +7896,12 @@ GameObject:
   - component: {fileID: 1116908079}
   - component: {fileID: 1116908078}
   - component: {fileID: 1116908077}
-  - component: {fileID: 1116908081}
   - component: {fileID: 1116908084}
   - component: {fileID: 1116908083}
   - component: {fileID: 1116908085}
   - component: {fileID: 1116908082}
   - component: {fileID: 1116908086}
+  - component: {fileID: 1116908081}
   - component: {fileID: 1116908087}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
@@ -9160,7 +9160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdefcb9f07241694b9db042d79987cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPrefab: {fileID: 3240524871627034548, guid: 534053b397750e74588f25f926e8da72, type: 3}
+  handPrefab: {fileID: 8189367360676074009, guid: dd46e4255de847d408d96d92103ac222, type: 3}
   inputDeviceCharacteristics: 576
 --- !u!1 &1359543981
 GameObject:
@@ -11111,7 +11111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdefcb9f07241694b9db042d79987cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPrefab: {fileID: 7072478885645355679, guid: a543ce027c5ec3a4788c4f633673c3de, type: 3}
+  handPrefab: {fileID: 1603225000521592703, guid: fe1801118179b4448bd019e7c007c4ce, type: 3}
   inputDeviceCharacteristics: 320
 --- !u!1 &1990689168
 GameObject:
@@ -11295,7 +11295,7 @@ GameObject:
   - component: {fileID: 2120219614}
   - component: {fileID: 2120219613}
   - component: {fileID: 2120219612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ray Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
