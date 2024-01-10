@@ -58,8 +58,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.aab
-*.unitypackage
 *.app
+*.unitypackage
+
 
 # Crashlytics generated file
 crashlytics-build.properties
@@ -73,6 +74,9 @@ crashlytics-build.properties
 
 #add occulus packages to .gitignore
 /Assets/Oculus/
+
+#add ProBuilder to .gitignore
+/ProjectSettings/Packages/com.unity.probuilder/Settings.json
 
 #
 /Library/
