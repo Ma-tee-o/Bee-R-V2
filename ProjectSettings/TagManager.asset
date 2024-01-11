@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Dialgoue
+    uniqueID: 1676447675
+    locked: 0
