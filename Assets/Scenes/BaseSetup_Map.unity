@@ -922,7 +922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &565989914
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSource: 5
-  speed: 2
+  speed: 5
 --- !u!114 &580308661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 580308663}
-  m_MoveSpeed: 10
+  m_MoveSpeed: 15
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 0
@@ -5427,8 +5427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a84aab12ad1e464fbb1acdd25a30382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultVision: {fileID: 0}
-  BeeVisionCam: {fileID: 0}
+  defaultVision: {fileID: 747232577}
+  BeeVisionCam: {fileID: 828608305}
   inputDeviceCharacteristics: 320
   _fadeTime: 1
 --- !u!114 &1845528498

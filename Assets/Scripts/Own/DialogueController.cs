@@ -45,7 +45,7 @@ public class DialogueController : MonoBehaviour
     }
     void NextSentence()
     {
-        if(Index < Sentences.Length -1)
+        if (Index < Sentences.Length - 1)
         {
             Index++;
             DialogueText.text = string.Empty;
@@ -65,5 +65,5 @@ public class DialogueController : MonoBehaviour
         }
         Index++;
     }
-    
+
 }
