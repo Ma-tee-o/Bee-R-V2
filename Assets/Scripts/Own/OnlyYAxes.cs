@@ -4,6 +4,8 @@ using UnityEngine;
 using  UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
+using UnityEngine.Events;
+
 
 public class OnlyYAxes : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class OnlyYAxes : MonoBehaviour
     private XROrigin rig;
     private Vector2 inputAxis;
     private CharacterController character;
+
+    public UnityEvent OnFirstMovement;
 
     void Start()
     {
@@ -35,5 +39,9 @@ public class OnlyYAxes : MonoBehaviour
         Vector3 position = transform.position;
         position.y += heightChange;
         transform.position = position;
+
+
     }
+
+
 }
