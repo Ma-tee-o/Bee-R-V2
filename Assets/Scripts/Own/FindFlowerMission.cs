@@ -7,7 +7,7 @@ public class FindFlowerMission : MonoBehaviour
     public List<GameObject> blumeObjects = new List<GameObject>();
     public GameObject pollenMissionObject; // Referenz auf das GameObject mit dem PollenMission-Skript
 
-    public float triggerDistance = 1.0f;
+    public float triggerDistance = 25.0f;
     private bool missionCompleted = false;
 
     private void Update()

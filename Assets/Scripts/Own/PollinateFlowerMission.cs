@@ -6,7 +6,7 @@ public class PollinateFlowerMission : MonoBehaviour
     public float requiredPollinationTime = 5f;
     public float currentPollinationTime = 0f;
     public int pollinationPoints = 0;
-    public float triggerDistance = 1.0f;
+    public float triggerDistance = 5.0f;
     public InputActionProperty bestaubenbutton;
     private bool isPollinating = false;
     private bool[] hasBeenPollinated;
