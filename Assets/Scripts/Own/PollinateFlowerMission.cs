@@ -6,11 +6,7 @@ public class PollinateFlowerMission : MonoBehaviour
     public float requiredPollinationTime = 5f;
     public float currentPollinationTime = 0f;
     public int pollinationPoints = 0;
-<<<<<<< HEAD
-    public float triggerDistance = 5.0f;
-=======
-    public float triggerDistance = 1.0f;
->>>>>>> 9fe6949ec5f1aa664d278e8553c248cbe3f3ce01
+    private float triggerDistance = 5.0f;
     public InputActionProperty bestaubenbutton;
     private bool isPollinating = false;
     private bool[] hasBeenPollinated;
@@ -18,6 +14,9 @@ public class PollinateFlowerMission : MonoBehaviour
 
     public GameObject bieneObject;
     public GameObject[] blumeObjects;
+
+    public global::System.Single TriggerDistance { get => triggerDistance; set => triggerDistance = value; }
+    public global::System.Boolean IsPollinating { get => isPollinating; set => isPollinating = value; }
 
     void Start()
     {
