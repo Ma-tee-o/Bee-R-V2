@@ -1,46 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FindFlowerMission : MonoBehaviour
 {
-    
     public GameObject bieneObject;
-    public GameObject blumeObject;
+    public List<GameObject> blumeObjects = new List<GameObject>();
+    public GameObject pollenMissionObject; // Referenz auf das GameObject mit dem PollenMission-Skript
 
     public float triggerDistance = 1.0f;
     private bool missionCompleted = false;
 
-    public GameObject nectarMissionObject; // Referenz auf das GameObject mit dem NektarMission-Skript
-
     private void Update()
     {
-        if (bieneObject == null || blumeObject == null)
+        if (bieneObject == null || blumeObjects.Count == 0)
         {
             Debug.LogError("Biene oder Blume GameObjects sind nicht zugewiesen!");
             return;
         }
 
-        float distance = Vector3.Distance(bieneObject.transform.position, blumeObject.transform.position);
-        if (distance < triggerDistance && !missionCompleted)
+        foreach (GameObject blumeObject in blumeObjects)
         {
-            StartNectarMission();
+            float distance = Vector3.Distance(bieneObject.transform.position, blumeObject.transform.position);
+            if (distance < triggerDistance && !missionCompleted)
+            {
+                // Starte keine nicht vorhandene Methode mehr
+                missionCompleted = true;
+                Debug.Log("Biene hat eine Blume getroffen!");
+                break;
+            }
         }
 
-        else
-        { Debug.Log("Konnte keine Blume finden."); }
-    }
-
-    private void StartNectarMission()
-    {
-        Debug.Log("Biene hat die Blume getroffen!");
-        missionCompleted = true;
-
-        if (nectarMissionObject != null)
+        if (!missionCompleted)
         {
-            NektarMission nectarMission = nectarMissionObject.GetComponent<NektarMission>();
-            if (nectarMission != null)
-            {
-                nectarMission.enabled = true; // Aktiviere die Nektarmission
-            }
+            Debug.Log("Konnte keine Blume finden.");
         }
     }
 }
