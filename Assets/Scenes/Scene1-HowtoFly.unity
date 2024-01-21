@@ -407,16 +407,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steps:
   - name: DetectfirstMovement
-    time: 48.23333
+    time: 42.4
     hasPlayed: 0
-  - name: UseBeeVision
-    time: 84.83333
+  - name: Findflower
+    time: 73.8
     hasPlayed: 0
   - name: PickupPollen
-    time: 97.78333
+    time: 85
     hasPlayed: 0
   - name: ReleasePollen
-    time: 114.8167
+    time: 101.6492
     hasPlayed: 0
 --- !u!1001 &20396977
 PrefabInstance:
@@ -1354,8 +1354,8 @@ Transform:
   m_GameObject: {fileID: 278181181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1478440912}
   - {fileID: 988247205}
@@ -6515,6 +6515,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSource: 5
   speed: 10
+  OnFirstInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 19522909}
+        m_TargetAssemblyTypeName: PlaySteps, Assembly-CSharp
+        m_MethodName: PlayStepIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputInvoked: 0
 --- !u!114 &1116908083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6695,22 +6711,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 11400000, guid: ff37ecb5ed57e7d4a8fcd2d0f9dc8f86, type: 2}
+    - {fileID: 11400000, guid: 083ec6b8912c549489da29abcce45a89, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1116908083}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
         - m_Target: {fileID: 1116908082}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
@@ -6724,6 +6728,18 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 1116908085}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1116908083}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -9006,7 +9022,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1819956885}
   - {fileID: 389121906}

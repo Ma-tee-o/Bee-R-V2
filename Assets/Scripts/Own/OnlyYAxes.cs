@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using  UnityEngine.XR;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
 using UnityEngine.Events;
@@ -15,8 +15,11 @@ public class OnlyYAxes : MonoBehaviour
     private XROrigin rig;
     private Vector2 inputAxis;
     private CharacterController character;
+    private bool isFirstInputProcessed = false;
 
-    public UnityEvent OnFirstMovement;
+    public UnityEvent OnFirstInput;
+
+    public bool InputInvoked = false;
 
     void Start()
     {
@@ -27,8 +30,19 @@ public class OnlyYAxes : MonoBehaviour
     void Update()
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
+        if (device.isValid && !InputInvoked && Mathf.Abs(inputAxis.y) > 0.01f)
+        {
+            isFirstInputProcessed = true;
+            OnFirstInput.Invoke();
+            InputInvoked = true;
+        }
         device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
+
+
+        // Check if the first input has been processed
+
     }
+
 
     private void FixedUpdate()
     {
@@ -39,8 +53,6 @@ public class OnlyYAxes : MonoBehaviour
         Vector3 position = transform.position;
         position.y += heightChange;
         transform.position = position;
-
-
     }
 
 
