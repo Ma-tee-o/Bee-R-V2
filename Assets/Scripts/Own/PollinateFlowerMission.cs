@@ -1,32 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.Events;
 
 public class PollinateFlowerMission : MonoBehaviour
 {
+    public UnityEvent allpollinated;
     public float requiredPollinationTime = 5f;
-    public float currentPollinationTime = 0f;
+    public float displayDuration = 10f;
+    private float currentPollinationTime = 0f;
+    private float currentDisplayTime = 0f;
     public int pollinationPoints = 0;
-    private float triggerDistance = 5.0f;
+    private float triggerDistance = 20.0f;
     public InputActionProperty bestaubenbutton;
     private bool isPollinating = false;
     private bool[] hasBeenPollinated;
-    private bool[] isFlowerActivated; // Neue Variable, um den Aktivierungsstatus zu speichern
+    private bool[] isFlowerActivated;
 
     public GameObject bieneObject;
     public GameObject[] blumeObjects;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI missionCompleteText; // TextMeshProUGUI-Objekt für den Missionsabschlusstext
 
-    public global::System.Single TriggerDistance { get => triggerDistance; set => triggerDistance = value; }
-    public global::System.Boolean IsPollinating { get => isPollinating; set => isPollinating = value; }
+    private int totalPollinated = 0;
+    private bool displayActive = false;
+
+    public float TriggerDistance { get => triggerDistance; set => triggerDistance = value; }
+    public bool IsPollinating { get => isPollinating; set => isPollinating = value; }
 
     void Start()
     {
         hasBeenPollinated = new bool[blumeObjects.Length];
-        isFlowerActivated = new bool[blumeObjects.Length]; // Initialisiere die neue Variable
+        isFlowerActivated = new bool[blumeObjects.Length];
 
         for (int i = 0; i < hasBeenPollinated.Length; i++)
         {
             hasBeenPollinated[i] = false;
-            isFlowerActivated[i] = false; // Setze den Aktivierungsstatus auf false
+            isFlowerActivated[i] = false;
         }
 
         if (bieneObject == null || blumeObjects.Length == 0)
@@ -34,14 +45,21 @@ public class PollinateFlowerMission : MonoBehaviour
             Debug.LogError("Biene- oder Blumen-GameObject nicht zugewiesen!");
         }
 
-        // Registriere den Callback für den Bestäubungs-Button
         bestaubenbutton.action.performed += OnBestaubenButtonPressed;
     }
 
     void Update()
     {
-        if (isPollinating)
+        if (IsPollinating)
         {
+            currentDisplayTime += Time.deltaTime;
+
+            if (currentDisplayTime >= displayDuration && displayActive)
+            {
+                ClearDisplayText();
+                displayActive = false;
+            }
+
             currentPollinationTime += Time.deltaTime;
 
             if (currentPollinationTime >= requiredPollinationTime)
@@ -55,60 +73,78 @@ public class PollinateFlowerMission : MonoBehaviour
     {
         if (context.ReadValue<float>() > 0.5f)
         {
-            // Überprüfe die Distanz zwischen der Biene und den Blumen
             for (int i = 0; i < blumeObjects.Length; i++)
             {
                 float distance = Vector3.Distance(bieneObject.transform.position, blumeObjects[i].transform.position);
 
-                // Überprüfe, ob die Biene eine Blume erreicht hat, die noch nicht bestäubt wurde
-                // und die Blume nicht bereits aktiviert ist
-                if (distance < triggerDistance && !isPollinating && !hasBeenPollinated[i] && !isFlowerActivated[i])
+                if (distance < TriggerDistance && !IsPollinating && !hasBeenPollinated[i] && !isFlowerActivated[i])
                 {
-                    StartPollination(i); // Übergebe den Index der aktuellen Blume
+                    StartPollination(i);
                 }
             }
         }
         else
         {
-            // Stoppe die Bestäubung, wenn der Button losgelassen wird
             StopPollination();
         }
     }
 
     void StartPollination(int flowerIndex)
     {
-        isFlowerActivated[flowerIndex] = true; // Setze den Aktivierungsstatus auf true
-        isPollinating = true;
+        isFlowerActivated[flowerIndex] = true;
+        IsPollinating = true;
         Debug.Log("Bestäubung gestartet an Blume #" + flowerIndex + ": " + blumeObjects[flowerIndex].name);
     }
 
     void StopPollination()
     {
-        isPollinating = false;
+        IsPollinating = false;
         currentPollinationTime = 0f;
         Debug.Log("Bestäubung gestoppt.");
     }
 
     void CompletePollination()
     {
-        isPollinating = false;
+        IsPollinating = false;
         currentPollinationTime = 0f;
+        currentDisplayTime = 0f;
 
-        // Markiere die aktuelle Blume als bestäubt
         for (int i = 0; i < blumeObjects.Length; i++)
         {
             float distance = Vector3.Distance(bieneObject.transform.position, blumeObjects[i].transform.position);
 
-            // Überprüfe, ob die Biene in der Nähe der Blume ist, die noch nicht bestäubt wurde
-            // und die Blume aktiviert wurde
-            if (distance < triggerDistance && !hasBeenPollinated[i] && isFlowerActivated[i])
+            if (distance < TriggerDistance && !hasBeenPollinated[i] && isFlowerActivated[i])
             {
                 hasBeenPollinated[i] = true;
-                pollinationPoints++; // Erhöhe die Punktzahl nur, wenn die Blume noch nicht bestäubt wurde
-                Debug.Log("Bestäubung abgeschlossen! Punktzahl: " + pollinationPoints + " an Blume #" + i + ": " + blumeObjects[i].name);
+                totalPollinated++;
+                pollinationPoints++;
+                Debug.Log("Bestäubung abgeschlossen an Blume #" + i + ": " + blumeObjects[i].name);
+
+                if (scoreText != null && !displayActive)
+                {
+                    displayActive = true;
+                    scoreText.text = "Flowers pollinated: " + pollinationPoints;
+                    Invoke("ClearDisplayText", displayDuration);
+                }
             }
         }
 
-        // Führe hier die Aktionen für die abgeschlossene Bestäubung aus
+        if (totalPollinated == blumeObjects.Length)
+        {
+            Debug.Log("Bestäuben-Mission erfolgreich!");
+            allpollinated.Invoke();
+            DisplayMissionCompleteText(); // Neue Methode für Missionsabschlusstext
+        }
+    }
+
+    void ClearDisplayText()
+    {
+        scoreText.text = "";
+        missionCompleteText.text = ""; // Löschen Sie auch den Missionsabschlusstext
+    }
+
+    void DisplayMissionCompleteText()
+    {
+        missionCompleteText.text = "Congrats! you have finished all missions";
     }
 }
