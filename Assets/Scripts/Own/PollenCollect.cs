@@ -35,7 +35,7 @@ public class PollenCollect : MonoBehaviour
                         pollenAttachedText.text = "Mission 3: PollinateFlowers: Touch all 9 Flowers and then hold the X-Button on the left Controller till the Pollination-Score is shown";
 
                         // Rufe die Methode ClearDisplayText nach 6 Sekunden auf, um den Text zu löschen
-                        Invoke("ClearDisplayText", 6f);
+                        Invoke("ClearDisplayText", 13f);
                     }
 
                     // Hier könntest du weitere Aktionen nach Abschluss der Mission durchführen

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31361887, g: 0.5503927, b: 0.8219534, a: 1}
+  m_IndirectSpecularColor: {r: 0.31453457, g: 0.55162674, b: 0.82192343, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -879,14 +879,8 @@ PlayableDirector:
     value: {fileID: 19522908}
   - key: {fileID: 8364602511399821869, guid: aefcc26d386b01f428595132698bf14d, type: 2}
     value: {fileID: 186943645}
-  - key: {fileID: -8244938994068343902, guid: aefcc26d386b01f428595132698bf14d, type: 2}
-    value: {fileID: 681220530}
   - key: {fileID: 9082028156894221839, guid: aefcc26d386b01f428595132698bf14d, type: 2}
     value: {fileID: 1424805297}
-  - key: {fileID: -2982677020179065863, guid: aefcc26d386b01f428595132698bf14d, type: 2}
-    value: {fileID: 775420452}
-  - key: {fileID: -1022014013039040296, guid: aefcc26d386b01f428595132698bf14d, type: 2}
-    value: {fileID: 2061671006}
   m_ExposedReferences:
     m_References:
     - cea1de0a8db5c684da4653acb823163e: {fileID: 1478440911}
@@ -4443,7 +4437,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0, g: 1, b: 0.9696944, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4460,8 +4454,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4884,7 +4878,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 2
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -5892,7 +5886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681220531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6782,7 +6776,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0, g: 1, b: 0.9085407, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6799,8 +6793,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7094,7 +7088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &775420453
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10453,9 +10447,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186904935}
-  - component: {fileID: 1186904937}
   - component: {fileID: 1186904939}
   - component: {fileID: 1186904940}
+  - component: {fileID: 1186904941}
   m_Layer: 0
   m_Name: Missionmanager
   m_TagString: Untagged
@@ -10482,49 +10476,6 @@ Transform:
   m_Father: {fileID: 1696057096}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186904937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186904934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fad55b12f022e14995c2e04a12420ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allpollinated:
-    m_PersistentCalls:
-      m_Calls: []
-  requiredPollinationTime: 5
-  displayDuration: 6
-  pollinationPoints: 0
-  bestaubenbutton:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Bestaubenbutton
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6fb7ecff-09cc-4fe7-8ef5-4af97981e500
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 1344217773686753257, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  bieneObject: {fileID: 1116908076}
-  blumeObjects:
-  - {fileID: 1820246791}
-  - {fileID: 1522037151}
-  - {fileID: 1903592735}
-  - {fileID: 1940691194}
-  - {fileID: 114227934}
-  - {fileID: 20364561}
-  - {fileID: 1200643741}
-  - {fileID: 685674398}
-  - {fileID: 674898744}
-  scoreText: {fileID: 1727922967}
-  missionCompleteText: {fileID: 594629693}
 --- !u!114 &1186904939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10584,6 +10535,49 @@ MonoBehaviour:
   - {fileID: 1261356998}
   - {fileID: 1650179034}
   pollenAttachedText: {fileID: 740256715}
+--- !u!114 &1186904941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186904934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fad55b12f022e14995c2e04a12420ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allpollinated:
+    m_PersistentCalls:
+      m_Calls: []
+  requiredPollinationTime: 3
+  displayDuration: 13
+  pollinationPoints: 0
+  bestaubenbutton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Bestaubenbutton
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0be27ff3-e8ff-4aed-8018-3827cafb4e5f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1344217773686753257, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  bieneObject: {fileID: 1116908076}
+  blumeObjects:
+  - {fileID: 1820246791}
+  - {fileID: 1522037151}
+  - {fileID: 1903592735}
+  - {fileID: 1940691194}
+  - {fileID: 114227934}
+  - {fileID: 20364561}
+  - {fileID: 1200643741}
+  - {fileID: 685674398}
+  - {fileID: 674898744}
+  scoreText: {fileID: 1727922967}
+  missionCompleteText: {fileID: 594629693}
 --- !u!1 &1200643733
 GameObject:
   m_ObjectHideFlags: 0
@@ -11295,7 +11289,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 2
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -14670,7 +14664,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 2
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -15631,7 +15625,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0, g: 0.89049053, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15648,8 +15642,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.9
-  m_fontSizeBase: 29.9
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -19426,7 +19420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2061671007
 RectTransform:
   m_ObjectHideFlags: 0

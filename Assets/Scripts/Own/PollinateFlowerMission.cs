@@ -7,8 +7,8 @@ using UnityEngine.Events;
 public class PollinateFlowerMission : MonoBehaviour
 {
     public UnityEvent allpollinated;
-    public float requiredPollinationTime = 5f;
-    public float displayDuration = 10f;
+    public float requiredPollinationTime = 3f;
+    public float displayDuration = 13f;
     private float currentPollinationTime = 0f;
     private float currentDisplayTime = 0f;
     public int pollinationPoints = 0;
